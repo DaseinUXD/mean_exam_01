@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -6,13 +6,25 @@ import {HttpClient} from "@angular/common/http";
 })
 export class HttpService {
 
-  constructor(private _http: HttpClient) { }
-
-  getItems(){
-    return this._http.get('/items');
+  constructor(private _http: HttpClient) {
   }
 
-  createItems(item: Object){
-    return this._http.post('/items', item)
+  getProducts() {
+    return this._http.get('/products');
   }
+
+
+
+  createProduct(product: Object) {
+    return this._http.post('/products', product);
+  }
+
+  product(id) {
+    return this._http.get('/products/:id', id);
+  };
+
+  updateProduct(id) {
+    return this._http.put('/products/:id/edit', id);
+  }
+
 }

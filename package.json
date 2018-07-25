@@ -5,7 +5,7 @@
   "scripts": {
     "mongod": "d:/mongodb/server/4.0/bin/mongod",
     "mongo": "d:/mongodb/server/4.0/bin/mongo",
-    "mon": "nodemon server.js",
+    "monitor": "nodemon server.js",
     "start": "node server.js"
   },
   "dependencies": {

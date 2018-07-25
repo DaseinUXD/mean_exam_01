@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <h2>
+                {{title}}
+            </h2>
+        </div>
+        <div class="col-2">
+            <button class="m-2 btn btn-success" type="button" [routerLink]="['product','new']">
+                Add New Product
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr *ngFor="let product of products">
+                    <td>{{product['_id']}}</td>
+                    <td><a [routerLink]="['product', product['_id']]">
+                        {{product['name']}}
+                    </a></td>
+                    <td>{{product['quantity']}}</td>
+                    <td>${{product['price']}}</td>
+                    <td>
+
+                        <button class="m-2 btn btn-outline-warning" type="button"
+                                [routerLink]="['product', product['_id'],'edit']">Edit
+                        </button>
+                        <button class="m-2 btn btn-outline-danger" type="button"
+                                [routerLink]="['product',product['_id'],'delete']">Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>

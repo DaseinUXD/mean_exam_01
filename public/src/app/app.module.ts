@@ -17,22 +17,28 @@ import {HttpService} from "./http.service";
 // Allows the ability to route in Angular
 
 import { AppRoutingModule } from './app-routing.module';
-// import { HomeComponent } from './home/home.component';
-// import { ProductsComponent } from './products/products.component';
-// import { ProductsInfoComponent } from './products/products-info/products-info.component';
-// import { ProductsEditComponent } from './products/products-edit/products-edit.component';
-// import { ProductsNewComponent } from './products/products-new/products-new.component'
+import { ProductsListComponent } from './products-list/products-list.component';
+import { ProductsDetailsComponent } from './products-details/products-details.component';
+import { ProductsNewComponent } from './products-new/products-new.component';
+import { ProductsEditComponent } from './products-edit/products-edit.component';
+import { ProductsDeleteComponent } from './products-delete/products-delete.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductsListComponent,
+    ProductsDetailsComponent,
+    ProductsNewComponent,
+    ProductsEditComponent,
+    ProductsDeleteComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    AppRoutingModule,
     HttpClientModule
   ],
   providers: [HttpService],

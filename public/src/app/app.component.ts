@@ -1,6 +1,6 @@
-import { Component, OnInit  } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpService} from "./http.service";
-
+// import {AppRoutingModule} from "./app-routing.module";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,10 @@ import {HttpService} from "./http.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  constructor(private _httpService: HttpService){}
+  title = 'Commerce Manager';
+
+    constructor(private _httpService: HttpService) { }
+
+    ngOnInit(){ }
 
 }
