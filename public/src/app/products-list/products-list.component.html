@@ -27,9 +27,7 @@
 
                 <tr *ngFor="let product of products">
                     <td>{{product['_id']}}</td>
-                    <td><a [routerLink]="['product', product['_id']]">
-                        {{product['name']}}
-                    </a></td>
+                    <td>{{product['name']}}</td>
                     <td>{{product['quantity']}}</td>
                     <td>${{product['price']}}</td>
                     <td>
@@ -38,7 +36,7 @@
                                 [routerLink]="['product', product['_id'],'edit']">Edit
                         </button>
                         <button class="m-2 btn btn-outline-danger" type="button"
-                                [routerLink]="['product',product['_id'],'delete']">Delete
+                                [routerLink]="['product',product['_id']]">Details
                         </button>
                     </td>
                 </tr>

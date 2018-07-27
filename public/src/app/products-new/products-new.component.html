@@ -14,25 +14,41 @@
                     <div class="form-group row">
                         <label for="name" class="col-2 col-form-label h6">Name:</label>
                         <div class="col-4">
-                            <input id="name" type="text" name="name" [(ngModel)]="newProduct['name']" class="form-control">
+                            <input id="name" required type="text" name="name" minlength="3"
+                                   [(ngModel)]="newProduct['name']" #name="ngModel" class="form-control">
+                            <div *ngIf="name.invalid" class="alert alert-danger">
+                                <div *ngIf="name['errors']['required']">Name is required.</div>
+                                <div *ngIf="name['errors']['minlength']">Name must be at least 3 characters long.</div>
+                            </div>
                         </div>
 
                     </div>
                     <div class="form-group row">
                         <label for="quantity" class="col-2 col-form-label h6">Quantity:</label>
                         <div class="col-4">
-                            <input id="quantity" type="text" name="quantity" [(ngModel)]="newProduct['quantity']" class="form-control">
+                            <input id="quantity" required min="0" type="number" name="quantity" [(ngModel)]="newProduct['quantity']" #quantity="ngModel"
+                                   class="form-control">
+                            <div *ngIf="quantity.invalid" class="alert alert-danger">
+                                <div *ngIf="quantity['errors']['required']">Quantity is required.</div>
+                                <div *ngIf="quantity['errors']['min']">Quantity must be greater than zero (0)</div>
+                            </div>
                         </div>
 
                     </div>
                     <div class="form-group row">
                         <label for="price" class="col-2 col-form-label h6">Price:</label>
                         <div class="col-4">
-                            <input id="price" type="text" name="price" [(ngModel)]="newProduct['price']" class="form-control">
+                            <input id="price" required min="0" type="number" name="price" [(ngModel)]="newProduct['price']" #price="ngModel"
+                                   class="form-control">
+                            <div *ngIf="price.invalid" class="alert alert-danger">
+                                <div *ngIf="price['errors']['required']">Price is required.</div>
+                                <div *ngIf="price['errors']['min']">Price must be greater than zero (0)</div>
+                            </div>
+
                         </div>
 
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button [disabled]="name['errors'] || quantity['errors'] || price['errors']" type="submit" class="btn btn-primary">Submit</button>
                 </fieldset>
             </form>
         </div>

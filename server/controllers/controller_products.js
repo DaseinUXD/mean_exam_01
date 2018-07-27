@@ -1,12 +1,12 @@
-var Product = require('../models/model_product');
+const Product = require('../models/model_product');
 
 module.exports = {
 
     products: function (request, response) {
 
-        Product.find({}, (err, products) => {
-            if (err) {
-                response.json({'message': 'error', 'errors': ['Couldnt Product.find()']});
+        Product.find({}, (error, products) => {
+            if (error) {
+                response.json({'message': 'error', 'errors': ['Couldn\'t Product.find()']});
             }
             else {
                 response.json({'message': 'success', 'data': products});
@@ -14,14 +14,15 @@ module.exports = {
         });
     },
 
-    product: function (request, response) {
+    productDetails: function (request, response) {
         id = request.params.id;
-        Product.findById(id, (err, product) => {
-            if (err) {
-                response.json({'err': 'Ooooopsies'});
+        console.log('this is the id pulled from params.id:',id);
+        Product.findById(id, (error, product) => {
+            if (error) {
+                response.json({'error': 'Ooooopsies'});
             }
             else {
-                response.json(product);
+                response.json({'message': 'success','data': product});
             }
         });
     },
@@ -43,8 +44,47 @@ module.exports = {
         });
     },
 
-    // products_new_form: (request, response)=> {
-    //     product = new
-    // }
+    products_edit: (request, response) => {
+        id = request.body._id;
+        console.log('This is the request.body id:',id);
+        Product.findById(id, (error, productEdit)=>{
+            console.log('this is the product name found by that id:', productEdit['name'])
+            productEdit.name = request.body.name;
+            console.log('this is the product name found after trying to change the name by that id:', productEdit['name'])
+            productEdit.quantity = request.body.quantity;
+            productEdit.price = request.body.price;
+            // productEdit.save((error, productEdited)=>{
+            //     response.send(productEdited);
+            productEdit.save((error)=>{
+                if (error) {
+                    response.json({'error': error});
+                }
+                else {
+                    response.json({'success': 'success editing'})
+                }
+            });
+        });
+    },
+
+    products_delete:(request, response) => {
+        id = request.params.id;
+        console.log('This is the request.params.id to delete:', id);
+
+        Product.remove({_id: id} , (error, productDelete)=> {
+            console.log('this is the id found to delete:', productDelete);
+            response.json({'message':'success deleting'});
+            // if (error) return response(500).send(error);
+            // const response = {
+            //     message: 'Product deleted successfully',
+            //     id: productDelete._id
+            // };
+            // return response.status(200).send(response);
+        });
+
+    }
+
+
+
+
 
 };

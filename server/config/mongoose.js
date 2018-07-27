@@ -4,7 +4,7 @@ const path     = require('path'),
 
 mongoose.connect('mongodb://localhost/product_db');
 // create a variable that points to the models folder
-// var models_path = path.join(__dirname, '../models');
+// var models_path = path.join(__dirname, './../models');
 // console.log(models_path);
 // // read all of the files in the models_path and require (run) each of the javascript files
 //

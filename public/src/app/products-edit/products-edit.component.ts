@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router } from "@angular/router";
 import {HttpService} from "../http.service";
 
 @Component({
@@ -10,23 +10,34 @@ import {HttpService} from "../http.service";
 })
 export class ProductsEditComponent implements OnInit {
     title = 'Update Product';
-    product: Object;
+    productEdit: Object;
     createErrors: Object;
 
-    constructor(private _httpService: HttpService, private  _router: Router) {
+    constructor(private _httpService: HttpService, private _route: ActivatedRoute, private _router: Router) {
+        console.log('ProductEditComponent.constructor');
     }
 
     ngOnInit() {
+        console.log('ProductEditComponent.ngOnInit');
+        this._route.params.subscribe((prms: Params)=>{
+          let productEditObservable = this._httpService.getProduct(prms['id']);
+          productEditObservable.subscribe((product_edit_data)=>{
+              this.productEdit = product_edit_data['data'];
+              console.log(this.productEdit)
+            });
+        });
 
         this.resetProduct();
     }
 
-    updateProduct() {
-        this.product = [];
-        let productObservable = this._httpService.product(this.product);
+    editProduct() {
+        console.log('ProductEditComponent.updateProduct');
+        let productObservable = this._httpService.editProduct(this.productEdit);
         productObservable.subscribe((product_data: any) => {
-            console.log('data_from_update', product_data);
-            // this.resetProduct();
+            console.log('updateProduct...', product_data);
+            // this._router.navigate(['product']);
+        //     console.log('data_from_update', product_data);
+        //     // this.resetProduct();
             if(!product_data.error){
                 console.log(product_data);
                 this._router.navigate(['product']);
@@ -38,8 +49,9 @@ export class ProductsEditComponent implements OnInit {
         )
 
     }
+
     resetProduct(){
-        this.product={
+        this.productEdit={
             name: '',
             quantity: 0,
             price: 0

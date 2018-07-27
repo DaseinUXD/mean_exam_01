@@ -2,37 +2,37 @@
     <div class="row">
         <div class="col-12">
             <p *ngIf="createErrors">These are errors: {{createErrors|json}}</p>
-            <p> Product Being Updated:: {{product|json}}</p>
+            <p> Product Being Updated:: {{productEdit|json}}</p>
         </div>
     </div>
     <div class="row">
         <!--<div class="col-2"></div>-->
         <div class="col-12">
-            <form (submit)="updateProduct()" class="form">
+            <form (submit)="editProduct()" class="form">
                 <fieldset>
                     <legend class="h2">{{title}}</legend>
                     <div class="form-group row">
                         <label for="name" class="col-2 col-form-label h6">Name:</label>
                         <div class="col-4">
-                            <input id="name" type="text" name="name" [(ngModel)]="product['name']" class="form-control">
+                            <input id="name" type="text" name="name" [(ngModel)]="productEdit['name']" class="form-control">
                         </div>
 
                     </div>
                     <div class="form-group row">
                         <label for="quantity" class="col-2 col-form-label h6">Quantity:</label>
                         <div class="col-4">
-                            <input id="quantity" type="text" name="quantity" [(ngModel)]="product['quantity']" class="form-control">
+                            <input id="quantity" type="text" name="quantity" [(ngModel)]="productEdit['quantity']" class="form-control">
                         </div>
 
                     </div>
                     <div class="form-group row">
                         <label for="price" class="col-2 col-form-label h6">Price:</label>
                         <div class="col-4">
-                            <input id="price" type="text" name="price" [(ngModel)]="product['price']" class="form-control">
+                            <input id="price" type="text" name="price" [(ngModel)]="productEdit['price']" class="form-control">
                         </div>
 
                     </div>
-                    <button type="submit" class="btn btn-primary" [routerLink]="['product']" >Submit</button>
+                    <button type="submit" class="btn btn-outline-success">Submit</button>
                 </fieldset>
             </form>
         </div>

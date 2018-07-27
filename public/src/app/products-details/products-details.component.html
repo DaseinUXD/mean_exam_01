@@ -1,3 +1,50 @@
-<p>
-  products-details works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <!--<p *ngIf="createErrors">These are errors: {{createErrors|json}}</p>-->
+            <p> Product being detailed: {{product|json}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <!--<div class="col-2"></div>-->
+        <div class="col-12">
+            <form (submit)="deleteProduct(product['_id'])" class="form">
+                <fieldset>
+                    <legend class="h2">{{title}}</legend>
+                    <div class="form-group row">
+                        <label for="name" class="col-2 col-form-label h6">Name:</label>
+                        <div class="col-4">
+                            <input id="name" readonly disabled type="text" name="name" [(ngModel)]="product['name']"
+                                   class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="quantity" class="col-2 col-form-label h6">Quantity:</label>
+                        <div class="col-4">
+                            <input id="quantity" readonly disabled type="text" name="quantity"
+                                   [(ngModel)]="product['quantity']" class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="price" class="col-2 col-form-label h6">Price:</label>
+                        <div class="col-4">
+                            <input id="price" readonly disabled type="text" name="price" [(ngModel)]="product['price']"
+                                   class="form-control">
+                        </div>
+
+                    </div>
+                    <button class="m-2 btn btn-outline-warning" type="button"
+                            [routerLink]="['product']">Back
+                    </button>
+                    <button [disabled]="product['quantity'] !== 0" class="m-2 btn btn-outline-danger" type="submit">
+                        Delete
+                    </button>
+                </fieldset>
+            </form>
+        </div>
+        <!--<div class="col-2"></div>-->
+    </div>
+    <div class="row"></div>
+</div>

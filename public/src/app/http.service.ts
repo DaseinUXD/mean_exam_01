@@ -13,18 +13,23 @@ export class HttpService {
     return this._http.get('/products');
   }
 
-
-
   createProduct(product: Object) {
     return this._http.post('/products', product);
   }
 
-  product(id) {
-    return this._http.get('/products/:id', id);
+  getProduct(id) {
+    return this._http.get(`products/${id}`);
   };
 
-  updateProduct(id) {
-    return this._http.put('/products/:id/edit', id);
+  editProduct(productEdit: Object) {
+    return this._http.patch('/products', productEdit);
   }
+
+  deleteProduct(id) {
+      return this._http.delete(`/products/${id}`)
+  }
+  // deleteProduct(product: Object) {
+  //     return this._http.delete('/products', product)
+  // }
 
 }

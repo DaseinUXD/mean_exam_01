@@ -11,12 +11,12 @@ export class ProductsListComponent implements OnInit {
     products: Object[];
 
     constructor(private _httpService: HttpService) {
-        console.log('ProcuctsComponent.constructor')
+        console.log('ProductsLIstComponent.constructor')
 
     }
 
     ngOnInit() {
-        console.log('ProductsComponent.ngOnInit');
+        console.log('ProductsListComponent.ngOnInit');
 
         this.products = [];
 
